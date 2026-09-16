@@ -1,0 +1,8 @@
+version: 2
+sources:
+  - name: silver
+    catalog: pysparkdbt_taxiproject
+    schema: silver
+    tables:
+      - name: silver_yellowtaxi
+      - name: reject_yellowtaxi

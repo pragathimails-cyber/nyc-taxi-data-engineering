@@ -1,0 +1,27 @@
+version: 2
+
+models:
+  - name: dim_zone
+    description: "Zone dimension — one row per NYC taxi zone with name, borough, and service zone."
+    columns:
+      - name: zone_id
+        description: "Primary key — TLC location ID."
+        tests:
+          - unique
+          - not_null
+
+  - name: fact_trips
+    description: "Trip facts aggregated by zone, day-of-week, and hour."
+    columns:
+      - name: zone_id
+        description: "Foreign key to dim_zone."
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_zone')
+                field: zone_id
+      - name: trip_count
+        description: "Number of trips for this zone/day/hour."
+        tests:
+          - not_null
